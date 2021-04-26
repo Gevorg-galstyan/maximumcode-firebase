@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import 'fonts.css';
+
+body{
+  background: linear-gradient(222.26deg, #3B1D60 1.22%, #040D3E 106.28%);
+  font-family: 'Gilroy', sans-serif;
+}
+
+h1,h2,h3,h4,h5{
+  font-family: 'Inter', sans-serif;
+}
+
+
+.color-white{
+  color: #ffffff;
+}
+
+.verticalNav{
+  display: flex;
+  flex-direction: column;
+}
+.verticalNav a{
+  display: inline-block;
+  padding: 5px 0 !important;
+}
+
+#service-dropdown{
+  padding: 5px 15px;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #B5B5B5 !important;
+
+}
+
+.dropdown-menu{
+  width: 200px;
+}
+.nav-link.dropdown{
+  padding: 0;
+}
+
+.carousel-block{
+  margin: 90px 0;
+}
+
+.standartButton{
+  background: #F2994A;
+  box-shadow: -11.09px 18px 37px rgba(242, 153, 74, 0.13);
+  border-radius: 3px;
+  border: none;
+  text-transform: uppercase;
+  width: 157px;
+  height: 46px;
+]font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+}
+/*CONTACT BLOCK */
+.contactSection{
+  background: url("/img/contactPart.png") ;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding: 50px 0 140px;
+}
+.contactBlock{
+  margin: auto;
+  padding: 50px 156px;
+  background: rgba(60, 62, 125, 0.19);
+  backdrop-filter: blur(134px);
+  border-radius: 5px;
+}
+.contactBlockTitle{
+  margin: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 43px;
+  text-align: center;
+  color: #F2994A;
+}
+.contactBlockDesc{
+  margin: 20px 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  color: #95A1BB;
+}
+.contactBlockForm input{
+  flex: 0 0 308px !important;
+  height: 56px;
+  background: #F6F6F6;
+  opacity: 0.1;
+  border-radius: 5px;
+}
+input::-webkit-input-placeholder { /* Edge */
+  font-size: 14px;
+  color: #FFFFFF;
+}
+
+input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  font-size: 14px;
+  color: #FFFFFF;
+}
+
+input::placeholder {
+  font-size: 14px;
+  color: #FFFFFF;
+}
+
+.contactBlockSubmit{
+  flex: 0 0 128px !important;
+  height: 56px;
+  background: #F2994A;
+  border-radius: 0 5px 5px 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+.contactBlockFormAlert{
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  color: #8476AA;
+}

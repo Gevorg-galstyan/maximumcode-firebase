@@ -1,0 +1,177 @@
+.sliderPrimaryHead {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 44px;
+  line-height: 50px;
+  color: #99EFD0;
+}
+
+.sliderSecondaryHead {
+  margin: 20px 0 0 0;
+  font-family: 'Gilroy', sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+  color: #8476AA;
+  font-weight: 700;
+}
+
+.btnGroup {
+  display: flex;
+  align-items: center;
+  margin: 40px 0 60px 0;
+}
+
+.sliderBtn {
+  width: 157px;
+  height: 46px;
+  border-radius: 3px;
+}
+
+.sliderBtnBg {
+  background-color: #F2994A !important;
+  box-shadow: -11.09px 18px 37px rgba(242, 153, 74, 0.13);
+  border: none !important;
+}
+
+.sliderBtnNoneBg {
+  background-color: transparent !important;
+  border: 1px solid #F2994A !important;
+  color: #F2994A !important;
+}
+
+.videoButton {
+  width: 140px;
+  height: 80px;
+  background-color: #361C5D !important;
+  border-radius: 4px !important;
+  border: none;
+  box-shadow: none;
+  opacity: 1;
+}
+
+.videoTitle {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+  color: #6D6D78;
+}
+
+.videoDescription {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #8476AA;
+}
+.frame{
+  width: 100%;
+  background: url("/img/home/frame.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.aboutPrimaryTitle{
+  font-style: normal;
+  font-weight: bold;
+  font-size: 42px;
+  line-height: 50px;
+  text-align: center;
+  color: #99EFD0;
+}
+.aboutSecondaryTitle{
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  color: #8476AA;
+}
+.servicesTitle{
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: #99EFD0;
+}
+.servicesDescription{
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  color: #8476AA;
+}
+
+.homeAbout{
+  position: relative;
+  padding: 150px 0;
+}
+.innerOrange{
+  color: #F2994A;
+}
+.homeAboutTitle{
+  font-style: normal;
+  font-weight: bold;
+  font-size: 42px;
+  line-height: 50px;
+  color: #99EFD0;
+}
+.homeAboutDescription{
+  font-family: 'Gilroy', sans-serif;
+  font-size: 15px;
+  line-height: 28px;
+  letter-spacing: 0.5px;
+  color: #8476AA;
+}
+.homeFrame{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: translateY(-50%);
+}
+.orderWays{
+  padding: 40px 0 150px;
+}
+.toOrder{
+  padding-bottom: 50px;
+}
+.orderFrame{
+  margin-top: -100px;
+}
+.team{
+  padding: 50px 0 150px;
+  background: url("/img/home/icons/frameTeam.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+.aboutTeamTitle{
+  margin: 0;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: 0.325px;
+  color: #99EFD0;
+}
+.aboutTeamDescription{
+  margin: 50px 0;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  color: #8476AA;
+}
+.switcherTitle{
+  margin: 16px 0 8px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 18px;
+  letter-spacing: 0.2px;
+  color: #99EFD0;
+}
+.switcherDesc{
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  color: #8476AA;
+}

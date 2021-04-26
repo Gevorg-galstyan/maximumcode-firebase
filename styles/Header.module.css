@@ -1,0 +1,58 @@
+.logo {
+    max-width: 80px;
+    margin-right: 45px;
+}
+
+.headerNav {
+    padding: 5px 15px !important;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #B5B5B5 !important;
+}
+
+.active {
+    text-decoration: underline;
+}
+
+.headerNavButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 112px;
+    height: 36px;
+    background: #F2994A;
+    box-shadow: -11.09px 19px 37px rgba(242, 153, 74, 0.13);
+    border-radius: 3px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: all .3s ease;
+}
+.headerNavButton:hover{
+    background: #fb7600;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.headerNavButtonActive{
+    background: #fb7600;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.headerNavDropdown{
+    display: block;
+    padding: 5px 15px !important;
+    width: 100%;
+    color: #3B1D60;
+    font-size: 12px;
+    text-transform: uppercase;
+}
