@@ -1,6 +1,6 @@
 import AdminLayout from "../../components/admin/adminLayouts/AdminLayout";
-import {Button, Form} from "react-bootstrap";
 import {useEffect, useState} from "react";
+import {Button, Form} from "react-bootstrap";
 import {app} from "../../config/firebase";
 
 const About = () => {
@@ -58,7 +58,8 @@ const About = () => {
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Label>Name</Form.Label>
+                    <Form.Label>Description</Form.Label>
+
                     <textarea
                         placeholder="Enter description"
                         name={'description'}

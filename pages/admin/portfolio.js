@@ -2,8 +2,7 @@ import AdminLayout from "../../components/admin/adminLayouts/AdminLayout";
 import {Button, Form} from "react-bootstrap";
 import {useState} from "react";
 import {app} from "../../config/firebase";
-import {set} from "mobx";
-
+import { v4 as uuidv4 } from 'uuid';
 
 const Portfolio = () => {
     const db = app.firestore();
@@ -46,11 +45,13 @@ const Portfolio = () => {
             const storageRef = app.storage().ref();
             const imgRef = storageRef.child(`/${project.category}`).child(project.img.name)
             await imgRef.put(project.img);
-            await db.collection('portfolio').doc(project.name).set({
-                name: project.name,
+            await db.collection('portfolio').doc(project.name.toLowerCase().trim().split(' ').join('-')).set({
+                id: uuidv4(),
+                name: project.name.trim(),
                 img : await imgRef.getDownloadURL(),
                 description: project.description,
-                category: project.category
+                category: project.category,
+                slug:  project.name.toLowerCase().trim().split(' ').join('-')
             })
             setProject({
                 name: '',

@@ -17,9 +17,12 @@ const Header = () => {
             <Container>
                 <Row>
                     <Navbar bg="transparent" expand="lg"  className={'px-0 w-100'}>
-                        <Navbar.Brand href="/" className='mr-0'>
-                            <img src={'/img/logo.png'} alt="Maximum Code" className={style.logo}/>
-                        </Navbar.Brand>
+                       <Link  href="/">
+                           <a className='mr-0 navbar-brand'>
+                               <img src={'/img/logo.png'} alt="Maximum Code" className={style.logo}/>
+                           </a>
+                       </Link>
+
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto">

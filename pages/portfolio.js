@@ -1,54 +1,80 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import MainContainer from "../components/MainContainer";
+import Link from "next/link";
 import {app} from "../config/firebase";
 import {Col, Row} from "react-bootstrap";
+import style from '../styles/Portfolio.module.css'
+import {textEllipsis} from "../helpers/utils";
 
 const Portfolio = ({projects}) => {
 
     const [project, setProject] = useState(projects && projects)
 
-
-    useEffect(()=>{
-        const load = async ()=>{
+    useEffect(() => {
+        const load = async () => {
             const db = app.firestore();
             const portfolioCollections = await db.collection('portfolio').get();
             setProject(portfolioCollections.docs.map(doc => doc.data()))
         }
 
-        if(!projects){
+        if (!projects) {
             load();
         }
-
     }, [])
 
     return (
         <MainContainer title={'PORTFOLIO'}>
-           <Row>
-               {
-                   project && project.map(item =>(
-                       <Col lg={4} key={item.name}>
-                           <div>
-                               <img src={item.img} alt={item.name} className={'img-fluid'} />
-                           </div>
-                           <div>
-                               <h2>{item.name}</h2>
-                           </div>
-                           <div>
-                               <p>
-                                   {item.description}
-                               </p>
-                           </div>
-                       </Col>
-                   ))
-               }
-           </Row>
+            <Row>
+                <Col xs={12}>
+                    <div className={'w-75 m-auto'}>
+                        <h1 className={'text-center w-100'}>OUR PORTFOLIO</h1>
+                        <div className={'text-center'}>
+                            <p className={'m-0'}>
+                                We cooperate with technology businesses globally to create brand-new web products and
+                                implement market-leading solutions.
+                            </p>
+                            <p>
+                                We strive to deliver the best work for every single project. Here's a few of them we'd
+                                like you to see.
+                            </p>
+                        </div>
+                    </div>
+                </Col>
+            </Row>
+            <Row className={'mt-5'}>
+                {
+                    project && project.map(item => (
+                        <Col lg={4} key={item.id}>
+                            <Link
+                                href={`/portfolio/[id]`}
+                                as={`/portfolio/${item.slug}`}
+                            >
+                                <a>
+                                    <div className={style.portfolioBg} style={{backgroundImage: `url(${item.img})`}}>
+                                        {/*<img src={item.img} alt={item.name} className={'img-fluid'}/>*/}
+                                    </div>
+                                    <div className={'mt-2'}>
+                                        <h2>{item.name}</h2>
+                                    </div>
+                                    <div>
+                                        <p>
+                                            {textEllipsis(item.description, 70)}
+                                        </p>
+                                    </div>
+                                </a>
+                            </Link>
+
+                        </Col>
+                    ))
+                }
+            </Row>
         </MainContainer>
     );
 };
 
-Portfolio.getInitialProps  = async ({req})=>{
+Portfolio.getInitialProps = async ({req}) => {
 
-    if(!req){
+    if (!req) {
         return {
             projects: null
         };
@@ -58,7 +84,7 @@ Portfolio.getInitialProps  = async ({req})=>{
     const portfolioCollections = await db.collection('portfolio').get();
     const projects = portfolioCollections.docs.map(doc => doc.data())
 
-    return{
+    return {
         projects
     }
 
