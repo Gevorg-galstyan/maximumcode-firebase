@@ -136,3 +136,10 @@ input::placeholder {
   letter-spacing: 0.2px;
   color: #8476AA;
 }
+.portfolio-link{
+  color: #fff;
+}
+.portfolio-link:hover{
+  color: #fff;
+  text-decoration: none;
+}

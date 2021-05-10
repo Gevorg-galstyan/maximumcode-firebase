@@ -1,0 +1,9 @@
+@media all and (min-width: 991px) {
+    .w-lg-70{
+        width: 70%;
+    }
+    .w-lg-75{
+        width: 75%;
+    }
+
+}

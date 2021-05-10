@@ -1,0 +1,26 @@
+.globalPortfolioBg{
+    width: 100%;
+    max-width: 100%;
+}
+.editedBlock{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(0,0,0,.5);
+    transition: all .3s ease;
+}
+.openEditor:hover .editedBlock{
+    opacity: 1;
+    visibility: visible;
+}
+.editBtn,.deleteBtn{
+    width: 50px;
+    height: 50px;
+}

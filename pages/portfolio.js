@@ -24,16 +24,15 @@ const Portfolio = ({projects}) => {
 
     return (
         <MainContainer title={'PORTFOLIO'}>
-            <Row>
+            <Row className={'mt-5'}>
                 <Col xs={12}>
-                    <div className={'w-75 m-auto'}>
+                    <div className={'w-75 m-auto color-white'}>
                         <h1 className={'text-center w-100'}>OUR PORTFOLIO</h1>
-                        <div className={'text-center'}>
-                            <p className={'m-0'}>
+                        <div className={'text-center w-lg-50'}>
+                            <p className={`m-0 m-auto ${style.portfolioDescription}`}>
                                 We cooperate with technology businesses globally to create brand-new web products and
                                 implement market-leading solutions.
-                            </p>
-                            <p>
+
                                 We strive to deliver the best work for every single project. Here's a few of them we'd
                                 like you to see.
                             </p>
@@ -44,27 +43,26 @@ const Portfolio = ({projects}) => {
             <Row className={'mt-5'}>
                 {
                     project && project.map(item => (
-                        <Col lg={4} key={item.id}>
+                        <div  key={item.id} className={'my-5 w-lg-75 ml-auto mr-auto'}>
                             <Link
                                 href={`/portfolio/[id]`}
                                 as={`/portfolio/${item.slug}`}
                             >
-                                <a>
-                                    <div className={style.portfolioBg} style={{backgroundImage: `url(${item.img})`}}>
-                                        {/*<img src={item.img} alt={item.name} className={'img-fluid'}/>*/}
-                                    </div>
-                                    <div className={'mt-2'}>
-                                        <h2>{item.name}</h2>
-                                    </div>
-                                    <div>
-                                        <p>
-                                            {textEllipsis(item.description, 70)}
-                                        </p>
+                                <a className={'d-flex flex-wrap portfolio-link'}>
+                                    <div className={`${project.indexOf(item) % 2 ? style.leftSide : style.rightSide} ${style.portfolioInner}`}>
+                                        <div className={`${project.indexOf(item) % 2 ? 'order-0' : 'order-1'} ${style.portfolioBg} col`}
+                                             style={{backgroundImage: `url(${item.img})`}}>
+                                            <img src={item.img} alt={item.name} className={'d-none'}/>
+                                        </div>
+                                        <div className={`${project.indexOf(item) % 2 ? 'text-right' : 'text-left'} col p-0`}>
+                                            <h2 className={'mb-3'}>{item.name}</h2>
+                                            <p>{textEllipsis(item.description, 70)}</p>
+                                        </div>
                                     </div>
                                 </a>
                             </Link>
 
-                        </Col>
+                        </div>
                     ))
                 }
             </Row>

@@ -1,126 +1,134 @@
 import AdminLayout from "../../components/admin/adminLayouts/AdminLayout";
-import {Button, Form} from "react-bootstrap";
-import {useState} from "react";
+import AddProjectModal from "../../components/admin/adminModal/AddProject";
+import DeleteConfirm from "../../components/admin/adminModal/DeleteConfirm";
+import {useEffect, useState} from "react";
+import {textEllipsis} from "../../helpers/utils";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Button, Col, Form, Row} from "react-bootstrap";
 import {app} from "../../config/firebase";
-import { v4 as uuidv4 } from 'uuid';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+import style from "../../styles/Portfolio.module.css";
+import adminStyle from "../../styles/admin/adminGlobal.module.css";
 
-const Portfolio = () => {
-    const db = app.firestore();
-    const [project, setProject] = useState({
-        name: '',
-        img: '',
-        description:'',
-        category: 'web',
-    });
+const Portfolio = ({serverPortfolio}) => {
 
-    const handleChange = ({target}) => {
-        if (target.name === 'category' && target.value === '') {
-            return
+    const [portfolio, setPortfolio] = useState(serverPortfolio && serverPortfolio)
+    const [modalShow, setModalShow] = useState(false);
+    const [deleteModalShow, setDeleteModalShow] = useState(false);
+    const [isAddedOrEdited, setIsAddedOrEdited] = useState(false);
+    const [single, setSingle] = useState(null)
+    const [deleteProject, setDeleteProject] = useState(null)
+
+    useEffect(() => {
+        const load = async () => {
+            const db = app.firestore();
+            const portfolioCollections = await db.collection('portfolio').get();
+            setPortfolio(portfolioCollections.docs.map(doc => doc.data()))
         }
 
-        if (target.name === 'img') {
-            console.log('a')
-            const file = target.files[0];
-            setProject({
-                ...project,
-                [target.name]: file
-            })
-        } else {
-            setProject({
-                ...project,
-                [target.name]: target.value
-            })
+        if (!serverPortfolio) {
+            load();
         }
+    }, [isAddedOrEdited])
+
+    const handleEdit = (id)=>{
+        const item = portfolio.filter(e=> e.id === id)
+        setSingle(item[0])
+        setModalShow(true)
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if (!project || !project.name || !project.img || !project.category) {
-            alert('Fill all fields');
-            return;
-        }
-
-        if (project.img) {
-            const storageRef = app.storage().ref();
-            const imgRef = storageRef.child(`/${project.category}`).child(project.img.name)
-            await imgRef.put(project.img);
-            await db.collection('portfolio').doc(project.name.toLowerCase().trim().split(' ').join('-')).set({
-                id: uuidv4(),
-                name: project.name.trim(),
-                img : await imgRef.getDownloadURL(),
-                description: project.description,
-                category: project.category,
-                slug:  project.name.toLowerCase().trim().split(' ').join('-')
-            })
-            setProject({
-                name: '',
-                img: '',
-                description:'',
-                category: 'web',
-            })
-
-        }
-
-
+    const handleDelete = (id)=>{
+        const item = portfolio.filter(e=> e.id === id)
+        setDeleteProject(item[0])
+        setDeleteModalShow(true)
     }
 
     return (
         <AdminLayout title={'Portfolio'}>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Name"
-                        name={'name'}
-                        value={project.name}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>Category</Form.Label>
-                    <Form.Control
-                        as="select"
-                        name={'category'}
-                        value={project.category}
-                        onChange={handleChange}
-                    >
-                        <option value={'web'}>Web</option>
-                        <option value={'mobile'}>Mobile</option>
-                        <option value={'graphic'}>Graphic</option>
-                        <option value={'ui-ux'}>Ui/Ux</option>
-                    </Form.Control>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Name</Form.Label>
-                    <textarea
-                        placeholder="Enter description"
-                        name={'description'}
-                        onChange={handleChange}
-                        className={'w-100 p-2'}
-                        value={project.description}
-                        rows={10}
-                    >
-                    </textarea>
-                </Form.Group>
-                <Form.Group>
-                    <Form.File
-                        id="custom-file"
-                        label="Choose img"
-                        custom
-                        accept={'.jpg,.png,.jpeg'}
-                        name={'img'}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
-
-                <Button variant="primary" type="submit">
-                    Submit
+            <div className={'text-center'}>
+                <Button
+                    variant="primary"
+                    onClick={() => setModalShow(true)}
+                    className={'m-auto'}
+                >
+                    Add new project
                 </Button>
-            </Form>
+            </div>
+
+            <Row className={'mt-5'}>
+                {
+                    portfolio && portfolio.map(item => (
+                        <Col key={item.id} lg={4} className={'mt-3'}>
+                            <div className={`${adminStyle.openEditor} position-relative`}>
+                                <div className={`${style.portfolioBg} ${adminStyle.globalPortfolioBg}`}
+                                    style={{backgroundImage: `url(${item.img})`}}>
+                                </div>
+                                <div className={'color-white text-center'}>
+                                    <h2 className={'mb-3'}>{item.name}</h2>
+                                    <p>{textEllipsis(item.description, 70)}</p>
+                                </div>
+                                <div className={adminStyle.editedBlock}>
+                                    <div>
+                                        <Button
+                                            variant={'primary'}
+                                            className={adminStyle.editBtn}
+                                            onClick={()=> handleEdit(item.id)}
+                                        >
+                                            <FontAwesomeIcon icon={faEdit} />
+                                        </Button>
+                                        <Button
+                                            variant={'danger'}
+                                            className={`${adminStyle.deleteBtn} ml-3`}
+                                            onClick={()=> handleDelete(item.id)}
+                                        >
+                                            <FontAwesomeIcon icon={faTrash} />
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </Col>
+                    ))
+                }
+            </Row>
+            {
+                modalShow &&
+                <AddProjectModal
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                    setIsAddedOrEdeted = {setIsAddedOrEdited}
+                    isAddedOrEdeted = {isAddedOrEdited}
+                    info = {single}
+                />
+            }
+            {
+                deleteModalShow &&
+                <DeleteConfirm
+                    show={deleteModalShow}
+                    onHide={() => setDeleteModalShow(false)}
+                    setIsAddedOrEdeted = {setIsAddedOrEdited}
+                    isAddedOrEdeted = {isAddedOrEdited}
+                    project={deleteProject}
+                />
+            }
+
         </AdminLayout>
     );
 };
 
+Portfolio.getInitialProps = async ({req}) => {
+    if (!req) {
+        return {
+            projects: null
+        };
+    }
+
+    const db = app.firestore();
+    const portfolioCollections = await db.collection('portfolio').get();
+    const serverPortfolio = portfolioCollections.docs.map(doc => doc.data())
+
+    return {
+        serverPortfolio
+    }
+
+}
 export default Portfolio;

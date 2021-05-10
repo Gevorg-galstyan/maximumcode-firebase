@@ -2,10 +2,10 @@ import Head from "next/head";
 import AdminHeader from "./AdminHeader";
 import {useEffect} from "react";
 import {useRouter} from "next/router";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {app} from "../../../config/firebase";
 
 const AdminLayout = ({title, children}) => {
-
     const user = app.auth().currentUser;
     const router = useRouter();
 
