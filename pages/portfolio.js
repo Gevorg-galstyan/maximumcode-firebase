@@ -43,7 +43,7 @@ const Portfolio = ({projects}) => {
             <Row className={'mt-5'}>
                 {
                     project && project.map(item => (
-                        <div  key={item.id} className={'my-5 w-lg-75 ml-auto mr-auto'}>
+                        <div  key={item.id} className={'my-5 w-lg-75 w-100 ml-auto mr-auto'}>
                             <Link
                                 href={`/portfolio/[id]`}
                                 as={`/portfolio/${item.slug}`}
@@ -54,9 +54,9 @@ const Portfolio = ({projects}) => {
                                              style={{backgroundImage: `url(${item.img})`}}>
                                             <img src={item.img} alt={item.name} className={'d-none'}/>
                                         </div>
-                                        <div className={`${project.indexOf(item) % 2 ? 'text-right' : 'text-left'} col p-0`}>
-                                            <h2 className={'mb-3'}>{item.name}</h2>
-                                            <p>{textEllipsis(item.description, 70)}</p>
+                                        <div className={`text-center col py-0 px-3`}>
+                                            <h2 className={`${style.projectName} mb-3`}>{item.name}</h2>
+                                            <p className={style.shortDescription}>{textEllipsis(item.description, 70)}</p>
                                         </div>
                                     </div>
                                 </a>

@@ -138,8 +138,12 @@ input::placeholder {
 }
 .portfolio-link{
   color: #fff;
+  background: rgba(53, 28, 92, .23);
+  box-shadow: 0 0 32px rgba(0, 0, 0, .5);
+  transition: all .3s ease;
 }
 .portfolio-link:hover{
   color: #fff;
   text-decoration: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
 }

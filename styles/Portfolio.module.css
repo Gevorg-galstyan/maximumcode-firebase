@@ -1,9 +1,11 @@
 .portfolioBg{
-    height: 200px;
+    height: 400px;
     width: 300px;
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
+    background-size: 100%;
+}
+.portfolioBg:hover{
+    animation: scrollBg 3s linear forwards;
 }
 .portfolioDescription{
     font-size: 14px;
@@ -22,4 +24,23 @@
     width: 100%;
     align-items: center;
     justify-content: space-between;
+}
+
+.shortDescription{
+    font-size: 13px;
+    font-weight: 600;
+}
+.projectName{
+    font-size: 2.5rem;
+}
+@keyframes scrollBg {
+    0%{
+        background-position: top;
+    }
+    50%{
+        background-position: center;
+    }
+    100%{
+        background-position: bottom;
+    }
 }

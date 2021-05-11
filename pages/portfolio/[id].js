@@ -28,7 +28,7 @@ const Single = ({serverProject}) => {
     }
     // console.log(rout)
     return (
-        <MainContainer>
+        <MainContainer title={project.name}>
             <Row>
                <Col lg={4}>
                    <img src={project.img} alt={project.name} className={'img-fluid'} />
